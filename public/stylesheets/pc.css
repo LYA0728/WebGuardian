@@ -1,0 +1,152 @@
+#chatView {
+    height: 85vh;
+    /* border: 1px solid red; */
+    margin-bottom: 1.5vh;
+}
+
+/* 隐藏滚动条 */
+div#chatView::-webkit-scrollbar {
+    width: 0 !important
+}
+
+
+#chatView h2 {
+    text-align: center;
+    color: white;
+    /* position:fixed; */
+    position: fixed;
+    top: 5px;
+    text-align: center;
+    left: 38%;
+}
+
+#chatView .fix {
+    /* position: sticky;
+    top: 5px;
+    position: -webkit-sticky; */
+    position: fixed;
+
+}
+
+* {
+    color: white;
+}
+
+/* 介绍 */
+div#introduce {
+    margin-bottom: 15px;
+    border-radius: 20px;
+    min-height: 12.5vh;
+}
+
+
+
+div#introduce>div>p:nth-child(2) {
+    font-size: 1.85rem
+}
+
+div#introduce>div>p:nth-child(3) {
+    font-size: 1.05rem
+}
+
+
+div#introduce div:nth-child(1) {
+    flex: 12.5;
+    margin: 5px 10px;
+}
+
+
+div#introduce div:nth-child(2) {
+    /* background-color: red; */
+    flex: 1;
+    margin: 5px 10px;
+    /* background-size: 50% 100%; */
+}
+
+/* chatGPT style */
+div.ChatGPT {
+    /* border: 1px solid black; */
+    width: 80vw;
+    margin: 0 auto;
+}
+
+
+div.ChatGPT>div:nth-child(1) {
+    /* border: 1px solid red; */
+    height: 50px;
+    flex: 1;
+}
+
+div.ChatGPT>div:nth-child(2) {
+    /* border: 1px solid yellow; */
+    margin-left: 10px;
+    flex: 14;
+}
+
+div.ChatGPT>div:nth-child(2) p {
+    padding: 10px 10px;
+    border-radius: 12.5px;
+    min-height: 10px;
+    max-height: 5000px;
+    height: auto;
+    /* color: black; */
+}
+
+/* user */
+div.user {
+    /* border: 1px solid black; */
+    width: 80vw;
+}
+
+div.user>div:nth-child(2) {
+    /* border: 1px solid red; */
+    flex: 1;
+    margin-left: 10px;
+}
+
+div.user>div:nth-child(1) {
+    /* border: 1px solid yellow; */
+    flex: 14;
+    min-height: 10px;
+    max-height: 5000px;
+}
+
+div.user>div:nth-child(1) p {
+    padding: 10px 10px;
+    border-radius: 12.5px;
+    min-height: 25px !important;
+}
+
+div.user,
+div.ChatGPT {
+    margin-bottom: 5px;
+}
+
+/* 交互空间 */
+div.widget {
+    height: 72.5px;
+    border-radius: 500px;
+}
+
+div.widget input {
+    width: 100%;
+    margin-right: 2.5%;
+    border-radius: 500px;
+    font-size: 1.5rem;
+    padding: 10px 50px;
+}
+
+
+div.widget div#setMsg {
+
+    /* right:15px; */
+    flex: 0.5;
+
+
+    background-size: 50%;
+    border-radius: 100%;
+    height: 40px;
+    width: 40px;
+}
+
+

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+    <title>WebGuardian</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.css" rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/LYA0728/ChatGPT/public/stylesheets/Style.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LYA0728/WebGuardian/public/stylesheets/mainStyle.css">
+</head>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<!-- https://fastly.jsdelivr.net/gh/LYA0728/ChatGPT/public/stylesheets/style.css -->
+
+
+<style>
+    div.user>div:nth-child(2) {
+        background-size: 99%;
+        background-repeat: no-repeat;
+    }
+
+    div.ChatGPT>div:nth-child(1){
+        background-size: 92.5%;
+        background-repeat: no-repeat;
+    }
+</style>
+<body>
+
+    <div id="chatView" class="container">
+        <br>
+        <div></div>
+        <!-- <div>
+            <h2 class="center fix">WebGuardian</h2>
+        </div> -->
+
+
+        <div id="introduce" class="container">
+            <div>
+                <br>
+                <p>WebGuardian</p>
+                <p>智能伙伴瓜瓜, 擅长倾听和陪伴, 希望能给你带来美好心情</p>
+            </div>
+            <div>
+                <!-- <img src="/images/img.svg" alt=""> -->
+            </div>
+        </div>
+
+        <div class="ChatGPT container">
+            <div></div>
+            <div>
+                <p class="chat_text">哈喽! 我是 WebGuardian(韦伯·盖迪恩), 有什么可以帮到你吗?</p>
+            </div>
+        </div>
+
+        <!-- <div class="user container">
+            <div>
+                <p>45446</p>
+            </div>
+            <div></div>
+        </div> -->
+    </div>
+
+    <div class="widget container">
+        <input id='text' type="text" placeholder="请用一句话描述你的问题">
+        <!-- <div>4564</div> -->
+        </input>
+        <!-- <button id='setMsg' style="color: black;">发送消息</button> -->
+        <div id="setMsg"></div>
+    </div>
+
+</body>
+
+<script src="https://fastly.jsdelivr.net/gh/LYA0728/ChatGPT/public/javascripts/chatHistory.js"></script>
+<script>
+    
+    window.onload = function () {
+        let scaleValue = window.screen.availWidth < 768 ? 0.88:0.925;
+        var input_with = scaleValue * $("#text").innerWidth();
+        var input_height = $("#text").innerHeight()
+        var th = 0.5 * (input_height - $("div.widget div").innerHeight())
+
+
+        var img_width = $("div.ChatGPT > div:nth-child(1)").innerWidth()
+        $("div.ChatGPT > div:nth-child(1)").css({ "height": img_width })
+        $("div.user > div:nth-child(2)").css({ "height": img_width })
+
+        $("div.widget div").css({ 'transform': `translate(${input_with}px, ${th}px)` })
+    };
+
+
+    
+
+    $("div#setMsg").click(
+
+        () => {
+
+            let userMsg = `
+            <div class="user container">
+            <div>
+                <p>${$("#text").val()}</p>
+            </div>
+            <div class="user_Avatar"></div>
+            
+        </div>
+            `
+            let data = { msg: `${$("#text").val()}` }
+
+            window.chatContent = {}
+            // 聊天内容：user
+            window.chatContent["user"] = `${$("#text").val()}`
+            $("#text").val("")
+            $("div#chatView").append(userMsg);
+
+            var img_width = $("div.ChatGPT > div:nth-child(1)").innerWidth()
+
+            $("div.user > div.user_Avatar").css({ "height": img_width })
+            
+
+            let chatViewHeight = 0
+                    $("#chatView div.container").each((index, ele) => {
+                        chatViewHeight+=ele.offsetHeight
+                        
+                    })
+
+            if(chatViewHeight-$("div#chatView").innerHeight()>-20){
+                        var a = chatViewHeight-$("div#chatView").innerHeight()
+                        $('#chatView').animate({scrollTop: a*5},1000) 
+                    }
+            var post_url = "https://43.136.69.19:8888/chatGPT"
+            $.post(post_url,
+                JSON.stringify(data),
+                function (res) {    // 回调函数
+
+                    let reply = JSON.parse(res["chatGPT_rep"])["choices"][0]["text"];
+
+                    let ChatGPT_reply = `
+                    <div class="ChatGPT container">
+                        <div></div>
+                        <div>
+                            <p>${reply}</p>
+                        </div>
+                    </div>
+                        `
+                    $("div#chatView").append(ChatGPT_reply);
+
+                    window.chatContent["ChatGPT"] = reply;
+
+                    if(window.localStorage.getItem("chatHistory")){
+                        let arr = window.localStorage.getItem("chatHistory").replace(/},/g, "};").split(';');
+
+                        arr.push(JSON.stringify(chatContent))
+                        console.log(arr)
+                        window.localStorage.clear();
+                        window.localStorage.setItem("chatHistory", arr)
+                    }else{
+                        // console.log("没有聊天记录")
+                        let arr = []
+                        arr.push(JSON.stringify(chatContent))
+                        window.localStorage.setItem("chatHistory", arr)
+                    }
+                    
+                    console.log(window.chatContent)
+
+                    let chatViewHeight = 0
+                    $("#chatView div.container").each((index, ele) => {
+                        chatViewHeight+=ele.offsetHeight
+                        
+                    })
+                    console.log(chatViewHeight, $("div#chatView").innerHeight())
+
+                    // 消息过多时自动滚动
+                    if(chatViewHeight-$("div#chatView").innerHeight()>-20){
+                        var a = chatViewHeight-$("div#chatView").innerHeight()
+                        $('#chatView').animate({scrollTop: a*5},1000) 
+                    }
+                    
+                    var img_width = $("div.ChatGPT > div:nth-child(1)").innerWidth()
+                    $("div.ChatGPT > div:nth-child(1)").css({ "height": img_width })
+                }
+            )
+
+
+        }
+    )
+
+    // 窗口改变事件
+    window.onresize = () => {
+        let scaleValue = window.screen.availWidth < 768 ? 0.88:0.925;
+        var input_with = scaleValue * $("#text").innerWidth();
+        var input_height = $("#text").innerHeight()
+        var th = 0.5 * (input_height - $("div.widget div").innerHeight())
+
+        var img_width = $("div.ChatGPT > div:nth-child(1)").innerWidth()
+        $("div.ChatGPT > div:nth-child(1)").css({ "height": img_width })
+        $("div.user > div:nth-child(2)").css({ "height": img_width })
+        // window.outerWidth - window.innerWidth
+
+        $("div.widget div").css({ 'transform': `translate(${input_with}px, ${th}px)` })
+    }
+
+    $(window).resize(()=>{
+        let scaleValue = window.screen.availWidth < 768 ? 0.88:0.925;
+        var input_with = scaleValue * $("#text").innerWidth();
+        var input_height = $("#text").innerHeight()
+        var th = 0.5 * (input_height - $("div.widget div").innerHeight())
+
+        var img_width = $("div.ChatGPT > div:nth-child(1)").innerWidth()
+        $("div.ChatGPT > div:nth-child(1)").css({ "height": img_width })
+        $("div.user > div:nth-child(2)").css({ "height": img_width })
+        // window.outerWidth - window.innerWidth
+
+        $("div.widget div").css({ 'transform': `translate(${input_with}px, ${th}px)` })
+    })
+
+
+    // 发送悬停
+    $("div#setMsg").hover(function () {
+        $("div#setMsg").css({"background-size": "80%"});
+    }, function () {
+        $("div#setMsg").css({"background-size": "50%"});
+    });
+
+    // 回车
+    $(document).keydown(function (event) {
+        if (event.keyCode == 13) {
+            $("div#setMsg").trigger("click");
+            //console.log("回车")
+        }
+    });
+
+</script>
+
+<script>
+    // var result = $("#chatView");
+    // if (result.length) {
+        
+    //     console.log(result.offset().top)
+    // }
+
+</script>
+
+</html>

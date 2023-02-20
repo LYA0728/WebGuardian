@@ -1,0 +1,187 @@
+@import url("https://cdn.jsdelivr.net/gh/LYA0728/WebGuardian/public/stylesheets/PC.css") screen and (min-width:765px);
+/* https://fastly.jsdelivr.net/gh/LYA0728/ChatGPT/public/stylesheets/style.css */
+@import url("https://cdn.jsdelivr.net/gh/LYA0728/WebGuardian/public/stylesheets/mobileStyle.css") screen and (max-width:764px);
+
+
+/* CSS变量 */
+:root {
+  /* --bg: rgba(95, 95, 95, 95); */
+  --bg:white;
+  --ChatBoxbg:rgba(55, 55, 55, 25);
+  /* 整体背景 */
+}
+
+
+body {
+  padding: 5px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: var(--bg);
+}
+
+a {
+  color: #00B7FF;
+}
+
+#chatView {
+  overflow: auto;
+
+  transition: scrollTop 0.5s;
+  -webkit-transition: scrollTop 0.5s;
+  /* Safari */
+  transition-timing-function: ease-in-out;
+}
+
+/* 介绍 */
+div#introduce {
+  height: auto;
+  
+  /* border:1px solid red; */
+  display: flex;
+  /* background-color: rgba(95, 95, 95, 95); */
+  background-color: white;
+  border: 2.5px solid black;
+  box-shadow: 0.5px 1.5px 5px 4.5px rgba(185, 185, 185, 100);
+}
+
+div#introduce > div > p{
+  color:black;
+}
+
+
+div#introduce div:nth-child(1) {
+  color: black
+}
+
+div#introduce>* {
+  padding: auto;
+  color: black
+}
+
+div#introduce div:nth-child(2) {
+  /* background-color: red; */
+  background-image: url("https://fastly.jsdelivr.net/gh/LYA0728/WebGuardian/public/images/chatGPT.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  /* background-size: 50% 100%; */
+}
+
+/* chatGPT style */
+div.ChatGPT {
+  /* border: 1px solid black; */
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+}
+
+div.ChatGPT>div, div.user > div{
+  justify-content: center;
+  align-items: center;
+}
+
+div.ChatGPT>div:nth-child(1) {
+  /* border: 1px solid red; */
+  float: left;
+  background-image: url("https://fastly.jsdelivr.net/gh/LYA0728/WebGuardian/public/images/chatGPT.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+div.ChatGPT>div:nth-child(2) {
+  /* border: 1px solid yellow; */
+  float: right;
+  height: auto;
+  display: flex;
+  justify-content: left; 
+}
+
+div.ChatGPT>div:nth-child(2) p{
+  align-items: center;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: justify;
+  background-color: var(--ChatBoxbg);
+  width: auto;
+  /* border: 1px solid red ; */
+  max-width: 85%;
+  /* color: black; */
+}
+
+/* user */
+div.user {
+  /* border: 1px solid black; */
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+}
+
+div.user>div:nth-child(2) {
+  /* border: 1px solid red; */
+  float: left;
+  background-image: url("https://fastly.jsdelivr.net/gh/LYA0728/WebGuardian/public/images/user.svg");
+  background-size: cover;
+  background-position: center;
+  
+}
+
+div.user>div:nth-child(1) {
+  /* border: 1px solid yellow; */
+  display: flex;
+  float: right;
+  height: auto;
+}
+
+div.user>div:nth-child(1) p{
+  align-items: right;
+  display: inline-block;
+  vertical-align: middle;
+  justify-content: right;
+  text-align: justify;
+  background-color: var(--ChatBoxbg);
+
+  width: auto;
+  height: auto;
+  margin-left: auto;
+}
+
+
+/* 交互空间 */
+div.widget {
+  /* background-color: rgba(55, 55, 55, 25); */
+  display: flex;
+  /* border: 1px solid red */
+}
+
+div.widget input {
+  /* background-color: transparent; */
+  background-color: var(--ChatBoxbg);
+  
+  border: 1px solid transparent;
+  text-align: left;
+  /* outline-color: rgba(0, 0, 0, 0); */
+  margin: 0 auto;
+  /* color:red */
+}
+
+div.widget div#setMsg {
+  position: absolute;
+  /* background-color: rgba(0, 128, 0, 50); */
+  background-color:#00B050;
+  /* right:15px; */
+  
+  background-image: url("https://fastly.jsdelivr.net/gh/LYA0728/WebGuardian/public/images/send.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  
+  transition: opacity 0.1s;
+  -webkit-transition: background-size 0.35s; /* Safari */
+  transition-timing-function:ease;
+
+  /* transform: translate(80vw, 8.5px);
+  transform: translateY(); */
+}
+
+input#text {
+  position: relative;
+}
