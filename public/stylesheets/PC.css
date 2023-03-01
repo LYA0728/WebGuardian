@@ -149,4 +149,6 @@ div.widget div#setMsg {
     width: 40px;
 }
 
-
+p.chat_text{
+    line-height: 35px;
+}

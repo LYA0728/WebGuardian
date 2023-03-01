@@ -1,6 +1,6 @@
 @import url("/stylesheets/pc.css") screen and (min-width:765px);
 /* https://fastly.jsdelivr.net/gh/LYA0728/ChatGPT/public/stylesheets/style.css */
-@import url("stylesheets/mobile.css") screen and (max-width:764px);
+@import url("/stylesheets/mobile.css") screen and (max-width:764px);
 
 
 /* CSS变量 */
@@ -201,7 +201,5 @@ div.loader p{
   align-items:center;
 }
 
-p.chat_text{
-  line-height: 35px;
-}
+
 
