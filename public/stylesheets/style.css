@@ -58,7 +58,7 @@ div#introduce>* {
 
 div#introduce div:nth-child(2) {
   /* background-color: red; */
-  background-image: url("https://fastly.jsdelivr.net/gh/LYA0728/ChatGPT/public/images/chatGPT.png");
+  background-image: url("https://fastly.jsdelivr.net/gh/LYA0728/ChatGPT/public/images/chatGPT.svg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -81,7 +81,7 @@ div.ChatGPT>div, div.user > div{
 div.ChatGPT>div:nth-child(1) {
   /* border: 1px solid red; */
   float: left;
-  background-image: url("https://fastly.jsdelivr.net/gh/LYA0728/ChatGPT/public/images/chatGPT.png");
+  background-image: url("https://fastly.jsdelivr.net/gh/LYA0728/ChatGPT/public/images/chatGPT.svg");
   background-size: cover;
   background-position: center;
 }

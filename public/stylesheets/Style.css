@@ -144,6 +144,8 @@ div.user>div:nth-child(1) p{
   width: auto;
   height: auto;
   margin-left: auto;
+
+  line-height: 1.75rem;
 }
 
 
@@ -187,3 +189,19 @@ div.widget div#setMsg {
 input#text {
   position: relative;
 }
+
+
+div#loader{
+  margin-top: 20px;
+}
+
+div.loader p{
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+
+p.chat_text{
+  line-height: 35px;
+}
+

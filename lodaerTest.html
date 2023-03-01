@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+    <title>WebGuardian</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="public/stylesheets/style.css">
+    <link rel="stylesheet" href="public/stylesheets/loader.css">
+</head>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<style>
+
+
+</style>
+<body>
+
+    <div id="chatView" class="container">
+        <br>
+        <div></div>
+        <!-- <div>
+            <h2 class="center fix">WebGuardian</h2>
+        </div> -->
+
+
+        <div id="introduce" class="container">
+            <div>
+                <br>
+                <p>WebGuardian</p>
+                <p>智能伙伴瓜瓜, 擅长倾听和陪伴, 希望能给你带来美好心情</p>
+            </div>
+            <div>
+                <!-- <img src="/images/img.svg" alt=""> -->
+            </div>
+        </div>
+
+        <div class="ChatGPT container">
+            <div></div>
+            <div class="loader">
+                <p>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </p>
+            </div>
+        </div>
+
+        <!-- <div class="user container">
+            <div>
+                <p>45446</p>
+            </div>
+            <div></div>
+        </div> -->
+    </div>
+
+    <div class="widget container">
+        <input id='text' type="text" placeholder="请用一句话描述你的问题">
+        <!-- <div>4564</div> -->
+        </input>
+        <!-- <button id='setMsg' style="color: black;">发送消息</button> -->
+        <div id="setMsg"></div>
+    </div>
+
+</body>
+
+
+
+<script>
+    let size = $(".loader > p").innerWidth() *0.105;
+    $(".loader > p > span").css({"height":`${size}px`, "width":`${size}px`})
+</script>
+
+
+</html>
